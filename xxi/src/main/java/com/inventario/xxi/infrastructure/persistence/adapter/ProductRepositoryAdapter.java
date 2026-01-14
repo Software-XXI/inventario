@@ -6,6 +6,8 @@ import com.inventario.xxi.infrastructure.persistence.entity.ProductEntity;
 import com.inventario.xxi.infrastructure.persistence.repository.ProductJpaRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class ProductRepositoryAdapter implements ProductRepositoryPort {
     private final ProductJpaRepository productJpaRepository;
@@ -19,6 +21,11 @@ public class ProductRepositoryAdapter implements ProductRepositoryPort {
         ProductEntity entity = mapToEntity(product);
         ProductEntity savedEntity = productJpaRepository.save(entity);
         return mapToDomain(savedEntity);
+    }
+
+    @Override
+    public List<Product> findAll(){
+        return productJpaRepository.findAll().stream().map(this::mapToDomain).toList();
     }
 
     private Product mapToDomain(ProductEntity savedEntity) {
