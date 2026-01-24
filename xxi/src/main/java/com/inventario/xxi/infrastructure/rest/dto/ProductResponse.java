@@ -18,4 +18,5 @@ public class ProductResponse {
     private BigDecimal price;
     private Integer stock;
     private Integer minStock;
+    private Boolean lowStock;
 }

@@ -4,8 +4,10 @@ import com.inventario.xxi.domain.model.Product;
 import com.inventario.xxi.domain.port.in.CreateProductCommand;
 import com.inventario.xxi.domain.port.in.CreateProductUseCase;
 import com.inventario.xxi.domain.port.in.ListProductsUseCase;
+import com.inventario.xxi.domain.port.in.UpdateStockUseCase;
 import com.inventario.xxi.infrastructure.rest.dto.CreateProductRequest;
 import com.inventario.xxi.infrastructure.rest.dto.ProductResponse;
+import com.inventario.xxi.infrastructure.rest.dto.UpdateStockRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +19,12 @@ import java.util.List;
 public class ProductController {
     private final CreateProductUseCase createProductUseCase;
     private final ListProductsUseCase listProductsUseCase;
+    private final UpdateStockUseCase updateStockUseCase;
 
-    public ProductController(CreateProductUseCase createProductUseCase, ListProductsUseCase listProductsUseCase) {
+    public ProductController(CreateProductUseCase createProductUseCase, ListProductsUseCase listProductsUseCase, UpdateStockUseCase updateStockUseCase) {
         this.createProductUseCase = createProductUseCase;
         this.listProductsUseCase = listProductsUseCase;
+        this.updateStockUseCase = updateStockUseCase;
     }
 
     @PostMapping
@@ -45,6 +49,12 @@ public class ProductController {
                 .toList();
     }
 
+    @PutMapping("/{id}/stock")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateStock(@PathVariable Long id, @Valid @RequestBody UpdateStockRequest request){
+        updateStockUseCase.updateStock(id, request.getQuantity());
+    }
+
     private ProductResponse mapToResponse(Product product){
         return new ProductResponse(
                 product.getId(),
@@ -52,7 +62,8 @@ public class ProductController {
                 product.getCategory(),
                 product.getPrice(),
                 product.getStock(),
-                product.getMinStock()
+                product.getMinStock(),
+                product.isLowStock()
         );
     }
 }

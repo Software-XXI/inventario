@@ -1,34 +1,31 @@
 package com.inventario.xxi.infrastructure.persistence.entity;
 
-
-import com.inventario.xxi.domain.model.Product;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
-
-@Entity
-@Table(name = "products")
-@Getter
-@AllArgsConstructor
 @NoArgsConstructor
-public class ProductEntity {
+@AllArgsConstructor
+@Getter
+@Entity
+@Table(name = "audit_logs")
+public class AuditLogEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private String name;
+    private Long productId;
     @Column(nullable = false)
-    private String category;
-    @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal price;
+    private Integer previousStock;
     @Column(nullable = false)
-    private Integer stock;
+    private Integer changeAmount;
     @Column(nullable = false)
-    private Integer minStock;
-    @Version
-    private Long version;
+    private Integer newStock;
+    @Column(nullable = false)
+    private LocalDateTime timestamp;
+    @Column(nullable = false)
+    private String reason;
 }
