@@ -1,10 +1,7 @@
 package com.inventario.xxi.infrastructure.rest;
 
 import com.inventario.xxi.domain.model.Product;
-import com.inventario.xxi.domain.port.in.CreateProductCommand;
-import com.inventario.xxi.domain.port.in.CreateProductUseCase;
-import com.inventario.xxi.domain.port.in.ListProductsUseCase;
-import com.inventario.xxi.domain.port.in.UpdateStockUseCase;
+import com.inventario.xxi.domain.port.in.*;
 import com.inventario.xxi.infrastructure.rest.dto.CreateProductRequest;
 import com.inventario.xxi.infrastructure.rest.dto.ProductResponse;
 import com.inventario.xxi.infrastructure.rest.dto.UpdateStockRequest;
@@ -20,11 +17,13 @@ public class ProductController {
     private final CreateProductUseCase createProductUseCase;
     private final ListProductsUseCase listProductsUseCase;
     private final UpdateStockUseCase updateStockUseCase;
+    private final DeleteProductUseCase deleteProductUseCase;
 
-    public ProductController(CreateProductUseCase createProductUseCase, ListProductsUseCase listProductsUseCase, UpdateStockUseCase updateStockUseCase) {
+    public ProductController(CreateProductUseCase createProductUseCase, ListProductsUseCase listProductsUseCase, UpdateStockUseCase updateStockUseCase, DeleteProductUseCase deleteProductUseCase) {
         this.createProductUseCase = createProductUseCase;
         this.listProductsUseCase = listProductsUseCase;
         this.updateStockUseCase = updateStockUseCase;
+        this.deleteProductUseCase = deleteProductUseCase;
     }
 
     @PostMapping
@@ -53,6 +52,12 @@ public class ProductController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateStock(@PathVariable Long id, @Valid @RequestBody UpdateStockRequest request){
         updateStockUseCase.updateStock(id, request.getQuantity());
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteProduct(@PathVariable Long id){
+        deleteProductUseCase.deleteProduct(id);
     }
 
     private ProductResponse mapToResponse(Product product){

@@ -41,4 +41,9 @@ public class ProductRepositoryAdapter implements ProductRepositoryPort {
     public Optional<Product> findById(Long id) {
         return productJpaRepository.findById(id).map(ProductMapper::toDomain);
     }
+
+    @Override
+    public void deleteById(Long id) {
+        productJpaRepository.deleteById(id);
+    }
 }
