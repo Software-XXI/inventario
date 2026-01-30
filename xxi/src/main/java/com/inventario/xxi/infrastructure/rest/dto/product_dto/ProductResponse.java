@@ -1,4 +1,4 @@
-package com.inventario.xxi.infrastructure.rest.dto;
+package com.inventario.xxi.infrastructure.rest.dto.product_dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

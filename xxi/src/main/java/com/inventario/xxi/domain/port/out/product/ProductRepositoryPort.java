@@ -1,4 +1,4 @@
-package com.inventario.xxi.domain.port.out;
+package com.inventario.xxi.domain.port.out.product;
 
 import com.inventario.xxi.domain.model.Product;
 

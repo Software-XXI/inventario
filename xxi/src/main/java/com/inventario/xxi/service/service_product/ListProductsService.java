@@ -1,8 +1,8 @@
-package com.inventario.xxi.service;
+package com.inventario.xxi.service.service_product;
 
 import com.inventario.xxi.domain.model.Product;
-import com.inventario.xxi.domain.port.in.ListProductsUseCase;
-import com.inventario.xxi.domain.port.out.ProductRepositoryPort;
+import com.inventario.xxi.domain.port.in.product.ListProductsUseCase;
+import com.inventario.xxi.domain.port.out.product.ProductRepositoryPort;
 
 import java.util.List;
 

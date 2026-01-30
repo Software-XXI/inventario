@@ -2,7 +2,7 @@ package com.inventario.xxi.domain.model;
 
 import java.time.LocalDateTime;
 
-public class AuditLog {
+public class ProductAuditLog {
     private final Long id;
     private final Long productId;
     private final Integer previousStock;
@@ -11,7 +11,7 @@ public class AuditLog {
     private final LocalDateTime timestamp;
     private final String reason;
 
-    public AuditLog(Long id, Long productId, Integer previousStock, Integer changeAmount, Integer newStock, LocalDateTime timestamp, String reason) {
+    public ProductAuditLog(Long id, Long productId, Integer previousStock, Integer changeAmount, Integer newStock, LocalDateTime timestamp, String reason) {
         this.id = id;
         this.productId = productId;
         this.previousStock = previousStock;
@@ -22,8 +22,8 @@ public class AuditLog {
     }
 
     //Factory Method
-    public static AuditLog stockChange(Long productId, Integer previousStock, Integer changeAmount, Integer newStock, String reason){
-        return new AuditLog(
+    public static ProductAuditLog stockChange(Long productId, Integer previousStock, Integer changeAmount, Integer newStock, String reason){
+        return new ProductAuditLog(
                 null,
                 productId,
                 previousStock,

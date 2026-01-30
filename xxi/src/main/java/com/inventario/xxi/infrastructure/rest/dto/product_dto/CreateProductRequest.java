@@ -1,4 +1,4 @@
-package com.inventario.xxi.infrastructure.rest.dto;
+package com.inventario.xxi.infrastructure.rest.dto.product_dto;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;

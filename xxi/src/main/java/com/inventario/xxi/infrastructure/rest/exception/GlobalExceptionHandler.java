@@ -1,6 +1,6 @@
 package com.inventario.xxi.infrastructure.rest.exception;
 
-import com.inventario.xxi.infrastructure.rest.dto.ErrorResponse;
+import com.inventario.xxi.infrastructure.rest.dto.product_dto.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
@@ -59,6 +59,36 @@ public class GlobalExceptionHandler {
                 "error", ex.getClass().getSimpleName(),
                 "message", ex.getMessage()
         );
+    }
+
+    @ExceptionHandler(InvalidCredentialsException.class)
+    public ResponseEntity<ErrorResponse> handleInvalidCredentials(InvalidCredentialsException ex) {
+        ErrorResponse error = new ErrorResponse(
+                "INVALID_CREDENTIALS",
+                ex.getMessage(),
+                LocalDateTime.now()
+        );
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error); // 401
+    }
+
+    @ExceptionHandler(UserInactiveException.class)
+    public ResponseEntity<ErrorResponse> handleUserInactive(UserInactiveException ex) {
+        ErrorResponse error = new ErrorResponse(
+                "USER_INACTIVE",
+                ex.getMessage(),
+                LocalDateTime.now()
+        );
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(error); // 403
+    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    public ResponseEntity<ErrorResponse> handleAuthentication(AuthenticationException ex) {
+        ErrorResponse error = new ErrorResponse(
+                "AUTHENTICATION_ERROR",
+                ex.getMessage(),
+                LocalDateTime.now()
+        );
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error); // 500
     }
 
 }

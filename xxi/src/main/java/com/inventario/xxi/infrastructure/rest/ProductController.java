@@ -1,10 +1,10 @@
 package com.inventario.xxi.infrastructure.rest;
 
 import com.inventario.xxi.domain.model.Product;
-import com.inventario.xxi.domain.port.in.*;
-import com.inventario.xxi.infrastructure.rest.dto.CreateProductRequest;
-import com.inventario.xxi.infrastructure.rest.dto.ProductResponse;
-import com.inventario.xxi.infrastructure.rest.dto.UpdateStockRequest;
+import com.inventario.xxi.domain.port.in.product.*;
+import com.inventario.xxi.infrastructure.rest.dto.product_dto.CreateProductRequest;
+import com.inventario.xxi.infrastructure.rest.dto.product_dto.ProductResponse;
+import com.inventario.xxi.infrastructure.rest.dto.product_dto.UpdateStockRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

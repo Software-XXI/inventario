@@ -1,4 +1,4 @@
-package com.inventario.xxi.domain.port.in;
+package com.inventario.xxi.domain.port.in.product;
 
 import java.math.BigDecimal;
 

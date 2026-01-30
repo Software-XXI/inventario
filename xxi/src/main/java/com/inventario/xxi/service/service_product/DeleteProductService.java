@@ -1,7 +1,7 @@
-package com.inventario.xxi.service;
+package com.inventario.xxi.service.service_product;
 
-import com.inventario.xxi.domain.port.in.DeleteProductUseCase;
-import com.inventario.xxi.domain.port.out.ProductRepositoryPort;
+import com.inventario.xxi.domain.port.in.product.DeleteProductUseCase;
+import com.inventario.xxi.domain.port.out.product.ProductRepositoryPort;
 
 public class DeleteProductService implements DeleteProductUseCase {
     private final ProductRepositoryPort productRepositoryPort;

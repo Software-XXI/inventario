@@ -1,10 +1,10 @@
-package com.inventario.xxi.service;
+package com.inventario.xxi.service.service_product;
 
-import com.inventario.xxi.domain.model.AuditLog;
+import com.inventario.xxi.domain.model.ProductAuditLog;
 import com.inventario.xxi.domain.model.Product;
-import com.inventario.xxi.domain.port.in.UpdateStockUseCase;
-import com.inventario.xxi.domain.port.out.AuditLogRepositoryPort;
-import com.inventario.xxi.domain.port.out.ProductRepositoryPort;
+import com.inventario.xxi.domain.port.in.product.UpdateStockUseCase;
+import com.inventario.xxi.domain.port.out.audit.AuditLogRepositoryPort;
+import com.inventario.xxi.domain.port.out.product.ProductRepositoryPort;
 import jakarta.transaction.Transactional;
 
 public class UpdateStockService  implements UpdateStockUseCase {
@@ -26,7 +26,7 @@ public class UpdateStockService  implements UpdateStockUseCase {
         }else{
             product.decreaseStock(Math.abs(stock));
         }
-        AuditLog log = AuditLog.stockChange(
+        ProductAuditLog log = ProductAuditLog.stockChange(
                 product.getId(),
                 product.getStock() - stock,
                 stock,

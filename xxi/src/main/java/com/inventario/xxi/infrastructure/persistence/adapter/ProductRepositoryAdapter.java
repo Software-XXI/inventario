@@ -1,7 +1,7 @@
 package com.inventario.xxi.infrastructure.persistence.adapter;
 
 import com.inventario.xxi.domain.model.Product;
-import com.inventario.xxi.domain.port.out.ProductRepositoryPort;
+import com.inventario.xxi.domain.port.out.product.ProductRepositoryPort;
 import com.inventario.xxi.infrastructure.persistence.entity.ProductEntity;
 import com.inventario.xxi.infrastructure.persistence.mapper.ProductMapper;
 import com.inventario.xxi.infrastructure.persistence.repository.ProductJpaRepository;
